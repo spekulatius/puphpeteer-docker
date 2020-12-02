@@ -1,0 +1,13 @@
+#!/bin/sh
+
+for environment in `cat php-versions.txt`; do
+    echo "Building puphpeteer:$environment"
+
+    docker build \
+        --file ./Dockerfile \
+        --build-arg PHP_VERSION="$environment" \
+        --build-arg NODE_VERSION="12.0.0" \
+        --tag "puphpeteer-$environment" \
+        .
+
+done
